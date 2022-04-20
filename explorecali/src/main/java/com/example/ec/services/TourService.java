@@ -3,10 +3,12 @@ package com.example.ec.services;
 import com.example.ec.domain.Difficulty;
 import com.example.ec.domain.Region;
 import com.example.ec.domain.Tour;
-import com.example.ec.domain.TourPackage;
 
 public interface TourService {
 
-    Tour createTour(long id, String title, String description, String blurb, Double price, String duration, String bullets, String keyword, TourPackage tourPackages, Region region, Difficulty difficulty);
+    Tour createTour(String title, String description, String blurb, Double price,
+                    String duration, String bullets,
+                    String keywords, String tourPackageName, Difficulty difficulty, Region region);
+
     Long total();
 }

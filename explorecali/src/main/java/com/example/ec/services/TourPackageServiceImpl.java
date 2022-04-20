@@ -3,7 +3,9 @@ package com.example.ec.services;
 import com.example.ec.domain.TourPackage;
 import com.example.ec.repository.TourPackageRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
+@Service
 public class TourPackageServiceImpl implements TourPackageService {
 
     private TourPackageRepository tourPackageRepository;

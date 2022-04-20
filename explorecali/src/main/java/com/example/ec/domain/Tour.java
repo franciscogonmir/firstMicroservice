@@ -31,8 +31,7 @@ public class Tour {
     private Difficulty difficulty;
 
 
-    public Tour(long id, String title, String description, String blurb, Double price, String duration, String bullets, String keyword, TourPackage tourPackages, Region region, Difficulty difficulty) {
-        this.id = id;
+    public Tour(String title, String description, String blurb, Double price, String duration, String bullets, String keyword, TourPackage tourPackages, Region region, Difficulty difficulty) {
         this.title = title;
         this.description = description;
         this.blurb = blurb;
@@ -45,7 +44,7 @@ public class Tour {
         this.difficulty = difficulty;
     }
 
-    protected Tour(){
+    protected Tour() {
 
     }
 

@@ -7,7 +7,9 @@ import com.example.ec.domain.TourPackage;
 import com.example.ec.repository.TourPackageRepository;
 import com.example.ec.repository.TourRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
+@Service
 public class TourServiceImpl implements TourService {
 
     private TourRepository tourRepository;
@@ -19,23 +21,14 @@ public class TourServiceImpl implements TourService {
         this.tourPackageRepository = tourPackageRepository;
     }
 
+    public Tour createTour(String title, String description, String blurb, Double price,
+                           String duration, String bullets,
+                           String keywords, String tourPackageName, Difficulty difficulty, Region region) {
+        TourPackage tourPackage = tourPackageRepository.findByName(tourPackageName).orElseThrow(() ->
+                new RuntimeException("Tour package does not exist: " + tourPackageName));
 
-    @Override
-    public Tour createTour(long id, String title, String description, String blurb, Double price, String duration, String bullets, String keyword, TourPackage tourPackages, Region region, Difficulty difficulty) {
-        return tourRepository.findById(id)
-                .orElse(tourRepository.save(
-                        new Tour(
-                                id,
-                                title,
-                                description,
-                                blurb,
-                                price,
-                                duration,
-                                bullets,
-                                keyword,
-                                tourPackageRepository.findById(tourPackages.getCode()).orElseThrow(() -> new RuntimeException("Tour package not exist in our database")),
-                                region,
-                                difficulty)));
+        return tourRepository.save(new Tour(title, description, blurb, price, duration,
+                bullets, keywords, tourPackage, region, difficulty));
     }
 
     @Override
